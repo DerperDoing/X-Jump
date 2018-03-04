@@ -1,7 +1,9 @@
 ﻿using UnityEngine;
 
 public class Platform : MonoBehaviour {
-	public float jumpForce = 20f;
+
+	public float jumpForce;
+
 	void OnCollisionEnter2D(Collision2D col)
 	{
 		if (col.relativeVelocity.y <= 0)
@@ -13,4 +15,5 @@ public class Platform : MonoBehaviour {
 			}
 		}
 	}
+
 }
