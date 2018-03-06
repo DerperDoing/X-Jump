@@ -269,7 +269,7 @@ MonoBehaviour:
   lPools:
   - tag: Normal
     prefab: {fileID: 1393401035800032, guid: 991b34246a74569438aeb5aefb878a29, type: 2}
-    size: 100
+    size: 5
 --- !u!4 &567726849
 Transform:
   m_ObjectHideFlags: 0

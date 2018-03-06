@@ -35,13 +35,18 @@ public class PlatformPooler : MonoBehaviour {
 
 	public GameObject SpawnFromPool(string tag, Vector2 pos)
 	{
-		if (!poolDictionary.ContainsKey (tag)) {
-			return null;
+
+		if(poolDictionary[tag].Count>0){
+			if (!poolDictionary.ContainsKey (tag)) {
+				return null;
+			}
+			GameObject objToSpawn = poolDictionary [tag].Dequeue();
+			objToSpawn.SetActive (true);
+			objToSpawn.transform.position = pos;
+			poolDictionary [tag].Enqueue (objToSpawn);
+			return objToSpawn;
 		}
-		GameObject objToSpawn=poolDictionary [tag].Dequeue();
-		objToSpawn.SetActive (true);
-		objToSpawn.transform.position = pos;
-		poolDictionary [tag].Enqueue (objToSpawn);
-		return objToSpawn;
+		Debug.Log ("Null se pehle");
+		return null;
 	}
 }

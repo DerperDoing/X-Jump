@@ -25,7 +25,7 @@ GameObject:
   - component: {fileID: 114630394197304898}
   m_Layer: 0
   m_Name: Platform
-  m_TagString: Untagged
+  m_TagString: Normal
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -72,11 +72,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   jumpForce: 10
-  minY: 0.01
-  maxY: 2
-  xRange: 3
-  lifetime: 5
-  spawn: {fileID: 0}
+  waitSec: 4
 --- !u!212 &212637759014037664
 SpriteRenderer:
   m_ObjectHideFlags: 1

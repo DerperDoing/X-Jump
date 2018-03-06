@@ -1,8 +1,18 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 
 public class Platform : MonoBehaviour {
 
-	public float jumpForce;
+	public float jumpForce,waitSec;
+	PlatformPooler p= PlatformPooler.Instance;
+
+	void OnBecameInvisible()
+	{
+//		StartCoroutine (PutBack());
+		Debug.Log("Invisble");
+		this.gameObject.SetActive (false);
+		p.poolDictionary [this.tag].Enqueue (this.gameObject);
+	}
 
 	void OnCollisionEnter2D(Collision2D col)
 	{
@@ -15,5 +25,12 @@ public class Platform : MonoBehaviour {
 			}
 		}
 	}
+
+//	IEnumerator PutBack()
+//	{
+//		yield return new WaitForSeconds (waitSec);
+//		this.gameObject.SetActive (false);
+//		p.poolDictionary [this.tag].Enqueue (this.gameObject);
+//	}
 
 }
