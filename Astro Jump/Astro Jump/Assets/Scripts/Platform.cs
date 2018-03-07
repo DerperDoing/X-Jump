@@ -3,15 +3,18 @@ using UnityEngine;
 
 public class Platform : MonoBehaviour {
 
-	public float jumpForce,waitSec;
-	PlatformPooler p= PlatformPooler.Instance;
+	public float jumpForce;
+	public bool invisible=false;
+
+	public static Platform instance;
+	void OnAwake()
+	{
+		instance=this;
+	}
 
 	void OnBecameInvisible()
 	{
-//		StartCoroutine (PutBack());
-		Debug.Log("Invisble");
-		this.gameObject.SetActive (false);
-		p.poolDictionary [this.tag].Enqueue (this.gameObject);
+		invisible = true;
 	}
 
 	void OnCollisionEnter2D(Collision2D col)
@@ -25,12 +28,4 @@ public class Platform : MonoBehaviour {
 			}
 		}
 	}
-
-//	IEnumerator PutBack()
-//	{
-//		yield return new WaitForSeconds (waitSec);
-//		this.gameObject.SetActive (false);
-//		p.poolDictionary [this.tag].Enqueue (this.gameObject);
-//	}
-
 }
