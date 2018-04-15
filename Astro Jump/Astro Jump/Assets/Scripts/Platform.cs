@@ -6,10 +6,11 @@ public class Platform : MonoBehaviour {
 	public float jumpForce,someVal;
 	void Update()
 	{
-		if (gameObject.transform.position.y < Camera.main.transform.position.y - someVal){
-			ObjectPooler.instance.DeletePlatform (gameObject);
+		if (gameObject.transform.position.y < (Camera.main.transform.position.y - someVal)){
+			gameObject.SetActive(false);
 		}
 	}
+
 
 	void OnCollisionEnter2D(Collision2D col)
 	{
