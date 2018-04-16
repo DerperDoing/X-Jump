@@ -5,7 +5,8 @@ TagManager:
   serializedVersion: 2
   tags:
   - Normal
-  - KillZone
+  - Boost
+  - Break
   layers:
   - Default
   - TransparentFX
