@@ -25,16 +25,15 @@ public class ObjectPooler : MonoBehaviour {
 	public float yMax= 1;
 
 	public void Start () {
-		prefabsList=new List<PrefabsData>();
 		pooledObjects=new List<List<GameObject>>();
-		for(int i=0;i<prefabsList.Count;i++) {
-			print ("Value of i: "+ i);
-			for (int j = 0; j <prefabsList[i].size; j++) {
-				print ("Value of j: "+j);
-				GameObject o = (GameObject)Instantiate(prefabsList[i].prefab);
+		foreach (PrefabsData pd  in prefabsList){
+			List<GameObject> pO=new List<GameObject>();
+			for (int j = 0; j <pd.size; j++) {
+				GameObject o = (GameObject)Instantiate(pd.prefab);
 				o.SetActive (false);
-				pooledObjects[i].Add(o);
+				pO.Add(o);
 			}
+			pooledObjects.Add (pO);
 		}
 	}
 
@@ -42,7 +41,7 @@ public class ObjectPooler : MonoBehaviour {
 		GetPlatform();
 		if (place) {
 			xPos = Random.Range (-xRange, xRange);
-			platforms.transform.position = new Vector2 (0, yPos);
+			platforms.transform.position = new Vector2 (xPos, yPos);
 			platforms.SetActive (true);
 			yPos += Random.Range (yMin, yMax);
 			place = false;
@@ -51,7 +50,7 @@ public class ObjectPooler : MonoBehaviour {
 
 
 	public void GetPlatform() {
-		int ind = Random.Range (0, pooledObjects.Count-1);
+		int ind = Random.Range (0, pooledObjects.Count);
 		for (int i = 0; i < pooledObjects[ind].Count; i++) {
 			if (!pooledObjects[ind][i].activeInHierarchy) {
 				platforms=pooledObjects[ind][i];
