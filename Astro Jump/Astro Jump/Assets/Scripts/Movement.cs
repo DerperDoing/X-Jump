@@ -1,18 +1,25 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Movement : MonoBehaviour {
 	public float speed=10f;
-	float leftConstraint, rightConstraint;
+	float bottomConstraint, leftConstraint, rightConstraint;
 	public float buffer;
+	public GameObject gameOver;
+	public GameObject restartButton;
 
-	void Awake()
+	void Start() //Earlier it was Awake()
 	{
 		leftConstraint = Camera.main.ScreenToWorldPoint (new Vector2 (0.0f, 0.0f)).x;
 		rightConstraint = Camera.main.ScreenToWorldPoint (new Vector2 (Screen.width, 0.0f)).x;
+		bottomConstraint = Camera.main.ScreenToWorldPoint (new Vector2 (0.0f, 0.0f)).y;
+		gameOver.SetActive (false);
+		restartButton.SetActive (false);
 	}
-	void FixedUpdate () {
+
+	void Update () {
 		float x = Input.acceleration.x;
 		transform.Translate (x, 0f, 0f);
 
@@ -20,6 +27,15 @@ public class Movement : MonoBehaviour {
 			this.transform.position = new Vector2 (rightConstraint + buffer, this.transform.position.y);
 		} else if (this.transform.position.x > rightConstraint + buffer) {
 			this.transform.position = new Vector2 (leftConstraint - buffer, this.transform.position.y);
+		} else if (this.transform.position.y < bottomConstraint - buffer) {
+			gameOver.SetActive (true);
+			restartButton.SetActive (true);
+			Destroy (this.gameObject);
 		}
+	}
+
+	public void restartGame()
+	{
+		SceneManager.LoadScene(0);
 	}
 }
