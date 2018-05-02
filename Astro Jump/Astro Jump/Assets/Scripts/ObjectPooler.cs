@@ -55,6 +55,7 @@ public class ObjectPooler : MonoBehaviour {
 			if (!pooledObjects[ind][i].activeInHierarchy) {
 				platforms=pooledObjects[ind][i];
 				place = true;
+				break;
 			}
 		}
 	}

@@ -56,11 +56,13 @@ MonoBehaviour:
   - prefab: {fileID: 1255381965328282, guid: 70a036b4a0c91e040b8950f276c79755, type: 2}
     size: 20
   - prefab: {fileID: 1403853527841402, guid: 30259b7725687be4298645f9d3baf01f, type: 2}
-    size: 5
+    size: 7
   - prefab: {fileID: 1372669183383130, guid: dc21971ca47c7bc499c396872e5130d1, type: 2}
+    size: 5
+  - prefab: {fileID: 1255381965328282, guid: 70a036b4a0c91e040b8950f276c79755, type: 2}
     size: 10
   xPos: 0
   yPos: 0.1
   xRange: 2
-  yMin: 0.01
-  yMax: 1
+  yMin: 0.1
+  yMax: 2

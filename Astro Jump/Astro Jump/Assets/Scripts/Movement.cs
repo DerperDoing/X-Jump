@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class Movement : MonoBehaviour {
 	public float speed=10f;
-	float bottomConstraint, leftConstraint, rightConstraint;
+	float leftConstraint, rightConstraint;
 	public float buffer;
 	public GameObject gameOver;
 	public GameObject restartButton;
@@ -14,7 +14,6 @@ public class Movement : MonoBehaviour {
 	{
 		leftConstraint = Camera.main.ScreenToWorldPoint (new Vector2 (0.0f, 0.0f)).x;
 		rightConstraint = Camera.main.ScreenToWorldPoint (new Vector2 (Screen.width, 0.0f)).x;
-		bottomConstraint = Camera.main.ScreenToWorldPoint (new Vector2 (0.0f, 0.0f)).y;
 		gameOver.SetActive (false);
 		restartButton.SetActive (false);
 	}
@@ -27,10 +26,16 @@ public class Movement : MonoBehaviour {
 			this.transform.position = new Vector2 (rightConstraint + buffer, this.transform.position.y);
 		} else if (this.transform.position.x > rightConstraint + buffer) {
 			this.transform.position = new Vector2 (leftConstraint - buffer, this.transform.position.y);
-		} else if (this.transform.position.y < bottomConstraint - buffer) {
+		}
+	}
+
+	void OnTriggerEnter2D(Collider2D col)
+	{
+		if(col.CompareTag("Kill Zone"))
+		{
 			gameOver.SetActive (true);
 			restartButton.SetActive (true);
-			Destroy (this.gameObject);
+			Destroy(this.gameObject);
 		}
 	}
 
